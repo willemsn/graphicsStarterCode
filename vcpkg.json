@@ -1,0 +1,10 @@
+{
+  "dependencies": [
+    "glew",
+    "glfw3",
+    "glm",
+    "libpng",
+    "nlohmann-json",
+    "zlib"
+  ]
+}
