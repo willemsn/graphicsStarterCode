@@ -53,11 +53,7 @@ sudo apt-get cmake git build-essential
 
 For the mac, you will certainly need Xcode installed. You can get this from Apple's App Store.  The developer command line tools (along with git) should get installed when this happens.
 
-After this, you will want to install Brew [https://brew.sh/](https://brew.sh/).  Brew is a package installer for macos that works well for installing a large variety of external packages and development libraries. With it, you can will install 
-
-* cmake
-
-After you install brew, you can install packages with the following command:
+After this, you will want to install Brew [https://brew.sh/](https://brew.sh/).  Brew is a package installer for macos that works well for installing a large variety of external packages and development libraries. With it, you can will install cmake (and many other tools you might find useful). After you install brew, you can install packages with the following command:
 
 ~~~~
 brew install <packageName>
