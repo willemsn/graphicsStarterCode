@@ -98,4 +98,19 @@ target_link_libraries(render ${ZLIB_LIBRARY})
 # test .cpp files in the utests directory for examples on using Boost's unit test system.
 #
 enable_testing()
+include(CTest)
+include(Catch)
+
+set(UTESTS
+    test_png)
+
+include_directories(${CMAKE_SOURCE_DIR})
+foreach(uexec ${UTESTS})
+  add_executable(${uexec} ${BUNDLEOPTS} tests/${uexec}.cpp)
+  target_link_libraries(${uexec} PRIVATE ${PNG_LIBRARY})
+  target_link_libraries(${uexec} PRIVATE ${ZLIB_LIBRARY})
+  target_link_libraries(${uexec} PRIVATE Catch2::Catch2WithMain)
+
+  catch_discover_tests(${uexec})
+endforeach(uexec)
 
