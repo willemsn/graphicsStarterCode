@@ -3,7 +3,7 @@
 This code is used as a starter set for generating images with computer graphics.  It doesn't do much out of the box other than to generate a PNG image for you.
 
 
-## Installing VCPkg
+## VCPkg
 
 This code relies on VCpkg [https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-cmd](VCPkg from Microsoft) to install the necessary packages we'll need for graphics.  VCPkg is a C++ package manager that helps reduce the burden of building C++ code that relies on external frameworks.  You will need VCPkg to easily build this code.
 
@@ -13,7 +13,7 @@ You will want to follow the instructions on this page for VCPkg and Getting Star
 
 Before VCPkg, you will need to make sure CMake, git and a C++ compiler are on your machine.  See machine/OS-specific information below for more details.
 
-When you install VCPkg, you should be able to follow the instructions for all systems (macos, Linux, Windows).  You will clone the vcpkg repository and then run a setup script in it.  You do not need to run this as sudo nor as an administrator.  The biggest thing you will need to make sure you do is set the environment variables. On Windows, you can add environment variables in the Settings.
+When you install VCPkg, you should be able to follow the instructions for all systems (macos, Linux, Windows).  You will clone the vcpkg repository and then run a setup script in it.  You do not need to run this as sudo nor as an administrator.  The biggest thing you will need to make sure you do is set the environment variables. On Windows, you can add environment variables in the Settings.  
 
 For Linux, you'll want to set the environment variable in your shell resource file.  For instance if you're running the csh, this would go in ~/.cshrc:
 ~~~~
@@ -27,7 +27,7 @@ export VCPKG_ROOT="/path/to/vcpkg"
 export PATH="$PATH:$VCPKG_ROOT"
 ~~~~
 
-## Building the Code
+## Building the Starter Code
 
 Once VCPkg is installed, clone this repository.  You should then be able to use cmake to generate the build environment for you.
 
@@ -36,6 +36,12 @@ git clone git@github.com:willemsn/graphicsStarterCode.git
 cd graphicsStarterCode
 cmake --preset=default
 ~~~~
+
+These commands work on Linux, macos and Windows.  You'll need a terminal (on Windows, I used git-bash).  The commands above will create a build folder called *buildVCPkg*.
+
+### CLion
+
+You can also open the project with CLion after you've cloned it.  When CLion comes up it will ask you for a CMake profile.  Typically, you can select CLion's "Debug" profile but in our case you will want to select the "default (preset)" profile.  This is the profile that's defined for the VCPkg setup with this source. 
 
 ## Prerequisites for Different Systems
 
@@ -49,6 +55,16 @@ On Ubuntu Linux, you'll need cmake, git and the build tools.  The command to ins
 sudo apt-get cmake git build-essential
 ~~~~
 
+To build on Linux, you could do the following:
+
+~~~~
+git clone git@github.com:willemsn/graphicsStarterCode.git
+cd graphicsStarterCode
+cmake --preset=default
+cd buildVCPkg
+make
+~~~~
+
 ### macos
 
 For the mac, you will certainly need Xcode installed. You can get this from Apple's App Store.  The developer command line tools (along with git) should get installed when this happens.
@@ -60,6 +76,16 @@ brew install <packageName>
 ~~~~
 
 typed at the command line of the Terminal.
+
+To build on macos, you could do the following:
+
+~~~~
+git clone git@github.com:willemsn/graphicsStarterCode.git
+cd graphicsStarterCode
+cmake --preset=default
+cd buildVCPkg
+make
+~~~~
 
 ### Windows 10/11
 
