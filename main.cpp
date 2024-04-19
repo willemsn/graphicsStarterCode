@@ -33,9 +33,8 @@ int main(int argc, char *argv[])
       glm::vec3 W(0,0,1);
 
       // relative location of the ray on the image plane
-      float j = (float)row;
       float u = l + (r - l)*(col+0.5F)/imWidth;
-      float v = b + (t - b)*(j+0.5F)/imHeight;
+      float v = b + (t - b)*(row+0.5F)/imHeight;
 
       glm::vec3 origin(0.0, 0.0, 0.0);
       glm::vec3 direction = -W + u*U + v*V;
