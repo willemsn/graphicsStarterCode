@@ -40,6 +40,8 @@ int main(int argc, char *argv[])
       glm::vec3 direction = -W + u*U + v*V;
 
       direction /= glm::length(direction);
+
+      // compute mapping from [-1, 1] space to [0, 1] space
       glm::vec3 mapToRGB = direction / 2.0F + glm::vec3(0.5, 0.5, 0.5);
 
       glm::vec3 pixelColor(mapToRGB.r * 255, mapToRGB.g * 255, mapToRGB.b * 255);
