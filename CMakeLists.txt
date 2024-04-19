@@ -102,7 +102,8 @@ include(CTest)
 include(Catch)
 
 set(UTESTS
-    test_png)
+    test_png
+    test_linalg)
 
 include_directories(${CMAKE_SOURCE_DIR})
 foreach(uexec ${UTESTS})
