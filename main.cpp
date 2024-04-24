@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
   for (unsigned int idx=0; idx<imHeight*imWidth; ++idx)
     {
       auto row = idx % imWidth;
-      auto col = static_cast<size_t>( floor(idx / static_cast<float>(imWidth)) );
+      auto col = floor(idx / static_cast<float>(imWidth));
 
       // Camera basis vectors - orthonormal
       glm::vec3 U(1,0,0);
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
 
       // direction /= glm::length(direction);  // or
       glm::normalize(direction);
-      
+
       // compute mapping from [-1, 1] space to [0, 1] space
       glm::vec3 mapToRGB = direction / 2.0F + glm::vec3(0.5, 0.5, 0.5);
 
