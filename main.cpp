@@ -15,17 +15,20 @@ int main(int argc, char *argv[])
   const auto imWidth = imData.get_width();
   const auto imHeight = imData.get_height();
 
+  // image plane dimensional information
+  float aspectRatio = args.width/(float)args.height;
+  float l = -0.25;
+  float r = 0.25;
+  float t = ((r - l) / aspectRatio) / 2.0F;
+  float b = -t;
+
+  float focalLength = 1.0F;
+
 #pragma unroll
   for (unsigned int idx=0; idx<imHeight*imWidth; ++idx)
     {
       auto row = idx % imWidth;
       auto col = static_cast<size_t>( floor(idx / static_cast<float>(imWidth)) );
-
-      // image plane dimensional information
-      float l = -0.5;
-      float r = 0.5;
-      float b = -0.5;
-      float t = 0.5;
 
       // Camera basis vectors - orthonormal
       glm::vec3 U(1,0,0);
@@ -37,17 +40,18 @@ int main(int argc, char *argv[])
       float v = b + (t - b)*(row+0.5F)/imHeight;
 
       glm::vec3 origin(0.0, 0.0, 0.0);
-      glm::vec3 direction = -W + u*U + v*V;
+      glm::vec3 direction = -focalLength*W + u*U + v*V;
 
-      direction /= glm::length(direction);
-
+      // direction /= glm::length(direction);  // or
+      glm::normalize(direction);
+      
       // compute mapping from [-1, 1] space to [0, 1] space
       glm::vec3 mapToRGB = direction / 2.0F + glm::vec3(0.5, 0.5, 0.5);
 
       glm::vec3 pixelColor(mapToRGB.r * 255, mapToRGB.g * 255, mapToRGB.b * 255);
 
       // The origin for indexing the height is in lower left...
-      imData[col][row] = png::rgb_pixel(pixelColor[0],pixelColor[1],pixelColor[2] );
+      imData[imHeight - 1 - col][row] = png::rgb_pixel(pixelColor[0],pixelColor[1],pixelColor[2] );
     }
 
   imData.write( args.outputFileName);
